@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head th:replace="fragments/head :: head"></head>
+
+
+
+<body>
+
+    <header th:replace="fragments/header :: header"></header>
+
+    <a href="#main_content" data-type="section-switch" class="return-to-top back-top"><i
+            class="fa fa-chevron-up"></i></a>
+
+    <div id="main_content">
+
+        
+        <section data-bg-image="../../media/background/12.jpg">
+            <div class="page-title-wrap" >
+                <div class="page-title-inner">
+                    
+                    <br>
+                    <h1 class="text-center" style="color: #c7f012">Agregar una especie</h1>
+                </div>
+            </div>
+            
+        </section>
+
+        <section class=" blog-grid">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-sm-12">
+                        <div class="review-inner" data-bg-image="">
+                            <div class="row no-gutters">
+                                <div class="col-md-8 pr__15">
+                                    <form role="form" th:action="@{/species/__${action}__}" th:object="${specie}" method="post" autocomplete="off" >
+                                        <input type="hidden" th:field="*{id}" >
+                                        
+                                        <div class="mb-3">
+                                            <label for="kingdom" class="form-label" style="color: #c7f012"> Nombre </label>
+                                            <input type="text" class="form-control" id="formGroupExampleInput" th:field="*{name}"
+                                                placeholder=" Nombre Especie ">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="formGroupExampleInput2" class="form-label" style="color: #c7f012"> Reino </label>
+                                            <input type="text" class="form-control" id="formGroupExampleInput2" th:field="*{kingdom}"
+                                                placeholder=" Ingrese Reino ">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="formGroupExampleInput" class="form-label" style="color: #c7f012"> Phylum </label>
+                                            <input type="text" class="form-control" id="formGroupExampleInput" th:field="*{phylum}"
+                                                placeholder=" Ingrese Phylum ">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="formGroupExampleInput2" class="form-label" style="color: #c7f012"> Orden </label>
+                                            <input type="text" class="form-control" id="formGroupExampleInput2" th:field="*{order}"
+                                                placeholder=" Ingrese Orden ">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="formGroupExampleInput" class="form-label" style="color: #c7f012">Familia</label>
+                                            <input type="text" class="form-control" id="formGroupExampleInput" th:field="*{family}"
+                                                placeholder=" Ingrese Familia ">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="formGroupExampleInput2" class="form-label" style="color: #c7f012">Género</label>
+                                            <input type="text" class="form-control" id="formGroupExampleInput2" th:field="*{genus}"
+                                                placeholder=" Ingrese Género ">
+                                        </div>
+                                        <br>
+                                        <button th:text="${action == 'create' ? 'Crear' : 'Actualizar'}" type="submit"  class="tim-btn read-btn"></button>
+                                    </form>
+                                    <!-- /.col-md-8 -->
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <footer th:replace="fragments/footer :: footer"></footer>
+
+    </div>
+    
+</body>
+
+</html>

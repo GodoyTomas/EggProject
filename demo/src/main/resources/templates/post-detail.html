@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+<head th:replace="fragments/head :: head"></head>
+
+<body>
+
+    <a href="#main_content" data-type="section-switch" class="return-to-top back-top"><i
+            class="fa fa-chevron-up"></i></a>
+
+    <div id="main_content">
+
+        <header th:replace="fragments/header :: header"></header>
+        <section class="single-post">
+            <br>
+            <div class="full-width mt-5 pt-5 ">
+                <div class="blog-details">
+                    <blockquote>
+                        <h2 class="blog-title" th:text="${post.title}"> </h2>
+                    </blockquote>
+                    
+                        <div class="container">
+                            <div class="row">
+                              <div class="col-6"></div>
+                              <div class="col-6 text-right" >
+                                <label class="blog-details"> 
+                                    <i class="fa fa-calendar"></i>
+                                    <label th:text="${post.dischargeDate}"></label>
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                        
+                    <div class="animal" th:if="${post.animal != null}">
+                        <div class="feature-image" >
+                            <img th:src="@{/uploads/animals/__${animal.image}__}">
+                        </div>
+                        <br>
+                        <div id="contenedor2">
+                            <p class="blog-title" th:text="${post.introduction}"></p>
+                        </div>
+
+
+                        <blockquote>
+                            <div class=" text-center">
+                                    <text>
+                                        Especie
+                                        <br>
+                                        <label th:text=${post.animal.specie.family}></label>
+                                    </text>
+                            </div>
+                        </blockquote>
+                        <div class="row row-cols-3 py-2 text-center" >
+                            
+                            <div class="col-4" style="border: 1px solid white; border-radius: 20px;">
+                                Nombre
+                                <br>
+                                <label th:text="${animal.name}"></label>
+                            </div>
+                            <div class="col-4" style="border: 1px solid white; border-radius: 20px;">
+                                Nombre científico
+                                <br>
+                                <label class="text-left" th:text="${animal.scientificName}"></label>
+                            </div>
+                            <div class="col-4" style="border: 1px solid white; border-radius: 20px;">
+                                Phylum <br>
+                                <label th:text="${animal.specie.Phylum}"></label>
+                            </div>
+                            <div class="col-4" style="border: 1px solid white; border-radius: 20px;">
+                                Género <br>
+                                <label th:text="${animal.specie.genus}"></label>
+                            </div>
+                            <div class="col-4" style="border: 1px solid white; border-radius: 20px;">
+                                Reino <br>
+                                <label th:text="${animal.specie.kingdom}"></label>
+                            </div>
+                            <div class="col-4" style="border: 1px solid white; border-radius: 20px;">
+                                Orden <br>
+                                <label th:text="${animal.specie.order}"></label>
+                            </div>
+                        </div>
+                        <br>
+                        <blockquote>Descripción</blockquote>
+                        <p class="text-justify" th:text="${animal.description}"></p>
+                    </div>
+                    
+                    <div class="park" th:if="${post.park != null}">
+                        <div class="feature-image" >
+                            <img th:src="@{/uploads/parks/__${park.image}__}">
+                        </div>
+                        <br>
+                        
+                        <div id="contenedor2">
+                            <p class="blog-title" th:text="${post.introduction}"></p>
+                        </div>
+                        
+                        <blockquote>
+                            <div class=" text-center">
+                                    <text>
+                                        <label th:text="${park.name}"></label>
+                                        <br>
+                                        <label th:text="${park.location}"></label>
+                                    </text>
+                            </div>
+                        </blockquote>
+                        <text th:text="| Link: @{${park.link}}|"></text>
+                        <br>
+                        <label class="text-justify"><a th:text="@{${park.position}}"></a></label>
+                        <div>
+                            <iframe
+                            src="https://maps.google.com/maps?q=Misiones,%20Argentina&t=k&z=7&ie=UTF8&iwloc=&output=embed"
+                            width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <br>
+                            <!-- ver alguna manera de que te tome la posicion-->
+                        </div>
+                        
+                        <blockquote>Descripción</blockquote>
+                        <p class="text-justify" th:text="${park.description}"></p>
+                            
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        
+
+
+        <section id="related-post">
+            <div class="container">
+                <h2 class="title">Related Post</h2>
+                <div class="blog-slider">
+                    <div class="swiper-container"
+                        data-swiper-config='{"loop": true, "speed": 700, "prevButton": "#related-nav-prev", "nextButton": "#related-nav-next", "spaceBetween": 30, "autoplay": 7000, "slidesPerView": 3, "paginationClickable": true, "breakpoints": { "991": { "slidesPerView": 2 },"768": { "slidesPerView": 1 }, "500": { "slidesPerView": 1 }}}'>
+
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" th:each="post : ${listPost}">
+                                <div class="blog-post-grid">
+                                    <div class="featire-image" th:if="${post.animal != null}">
+                                        <img th:src="@{/uploads/animals/__${post.animal.image}__}">
+                                    </div>
+
+
+                                    <div class="post-type-icon"><i class="fa fa-picture-o"></i></div>
+
+                                    <div class="blog-content">
+                                        <ul class="blog-meta">
+
+                                            <li><i class="fa fa-calendar"></i><a th:text="${post.DischargeDate}"></a>
+                                            </li>
+                                        </ul>
+                                        <div id="contenedor1">
+                                            <h3 class="blog-title" th:text="${post.title}"></h3>
+                                        </div>
+                                        <div id="contenedor1">
+                                            <p th:text="${post.introduction}"></p>
+                                        </div>
+                                        <a th:href="@{/posts/detail/__${post.id}__}"
+                                            class="tim-btn read-btn">Publicación</a>
+                                    </div>
+                                    <!-- /.blog-content -->
+
+                                </div>
+                            </div>
+                            <!-- /.blog-post-grid -->
+
+                        </div>
+                    </div>
+                    <!-- Swiper Nav Prev -->
+                    <div id="related-nav-prev" class="slider-nav-prev"><i class="fa fa-angle-left"></i></div>
+                    <!-- Swiper Nav Next -->
+                    <div id="related-nav-next" class="slider-nav-next"><i class="fa fa-angle-right"></i></div>
+
+                </div>
+                <!-- /.container -->
+            </div>
+        </section>
+
+    </div>
+
+
+    </div>
+</body>
+
+<footer th:replace="fragments/footer :: footer"></footer>
+
+</html>

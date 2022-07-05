@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head :: head"></head>
+
+
+<body data-style="default">
+
+    <header th:replace="fragments/header :: header"></header>
+
+    <a href="#main_content" data-type="section-switch" class="return-to-top back-top"><i
+            class="fa fa-chevron-up"></i></a>
+
+    <div id="main_content">
+
+        <section data-bg-image="../media/background/12.jpg">
+            <div class="page-title-wrap">
+                <div class="page-title-inner">
+                    <hr />
+                    <br>
+                    <h1 class="text-center" style="color: #c7f012">Lista de comentarios y sugerencias</h1>
+                </div>
+            </div>
+
+        </section>
+
+
+        <section class="blog-grid pt__50 pb__50">
+            <div class="container">
+                <div class="blog-post-grid" th:each="contact : ${contacts}">
+                    <div class="align-items-center">
+                        <div class="row align-items-center">
+                            <div class="col-10 px-5 pt-3">
+                                <h3 th:text="${contact.title}" class="blog-title"></h3>
+                            </div>
+                            <label class="col-2 text-center" th:text="${contact.DischargeDate}"></label>
+                            
+                            <label class="col-12 text-left px-5" th:text="| ${contact.user.name} ${contact.user.lastName} |"></label>
+                                                        
+                            <label class="col-12 text-left px-5" th:text="${contact.description}"></label>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+    </div>
+    <footer th:replace="fragments/footer :: footer"></footer>
+</body>

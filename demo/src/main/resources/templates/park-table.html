@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head :: head"></head>
+
+
+<body data-style="default">
+
+    <header th:replace="fragments/header :: header"></header>
+
+    <a href="#main_content" data-type="section-switch" class="return-to-top back-top"><i
+            class="fa fa-chevron-up"></i></a>
+
+    <div id="main_content">
+
+        <section data-bg-image="../media/background/12.jpg">
+            <div class="page-title-wrap">
+                <div class="page-title-inner">
+                    
+                    <br>
+                    <h1 class="text-center" style="color: #c7f012">Lista de Reservas</h1>
+                    <a th:href="@{/parks/form}" 
+                    class="popup-btn" data-animate="fadeInRight" data-delay="0.9s">Crear Reserva</a>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="blog-grid pt__50 pb__50">
+            <div class="container">
+                
+                <div class="alert alert-info alert-dismissible fade show" role="alert"
+                th:if="${parks.isEmpty()}">
+                    Debe ingresar una reserva
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4 col-md-6" th:each="park : ${parks}">
+                        <div class="blog-post-grid" th:style="${park.deleted} ? 'background: #dc3545;' :'' ">
+                            <div class="featire-image">
+                                <img th:src="@{/uploads/parks/__${park.image}__}">
+                            </div>
+                            
+                            <div class="post-type-icon">
+                                <a th:href="@{${park.link}}" target=_blank >
+                                    <i class="fa fa-solid fa-link">
+                                        
+                                    </i>
+                                </a>
+                            </div>
+                            
+                            <div class="blog-content">
+                                <div class="row align-items-center blog-meta ">
+                                    <div class="col">
+                                        
+                                    </div>
+                                    <div class="col-2">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <div class="col-3 px-0">
+                                        <a th:text="${park.dischargeDate}"></a>
+                                    </div>
+                                </div>
+                                <h3 class="blog-title" th:text="|Nombre: ${park.name}|"></h3>
+                                <text th:text="|Ubicación: ${park.location}|"></text>
+                                <div class="" >
+                                    <div id="contenedor1">
+                                    <p>
+                                       <text>Donde esta ubicado:
+                                        <a th:href=" ${park.position}" target=_blank>
+                                            <i class="fa fa-solid fa-map pl-2 ">
+                                            
+                                            </i>
+                                        </a>
+                                        
+                                       </text>
+                                    </p>
+                                </div>
+                                </div>
+                                
+                                
+                            </div>
+                            <!--<td sec:authorize="hasRole('ADMIN')">-->
+                                <div class="row justify-content-end">
+                                    <div class="col text-center">
+                                        <a th:href="@{/parks/form/__${park.id}__} " class="tim-btn read-btn">Editar</a>
+                                    </div>
+                                    <div class="col">
+                                        <form th:action="${park.deleted} ? @{/parks/enable/__${park.id}__} : @{/parks/delete/__${park.id}__}"
+                                        method="post">
+                                            <button th:text="${park.deleted} ? 'Dar de Alta' : 'Dar de Baja'" 
+                                            class="tim-btn read-btn" type="submit">
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                                
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <footer th:replace="fragments/footer :: footer"></footer>
+</body>

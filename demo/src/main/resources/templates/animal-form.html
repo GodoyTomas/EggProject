@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head :: head"></head>
+
+
+<body class="strategy-zoombie" data-bg-image="media/blog/57.jpg" data-style="default">
+
+
+	<a href="#main_content" data-type="section-switch" class="return-to-top back-top"><i
+			class="fa fa-chevron-up"></i></a>
+
+	<div id="main_content">
+
+		<header th:replace="fragments/header :: header"></header>
+		
+		<section data-bg-image="../../media/banner/z2.jpg">
+            <div class="page-title-wrap" >
+                <div class="page-title-inner">
+
+                    <br>
+                    <h1 class="text-center" style="color: #c7f012">Agregar una Animal</h1>
+                    
+                </div>
+            </div>
+            
+        </section>
+
+		<section class="blog-grid pt__50 pb__50">
+			
+			<div class="container">
+
+				<form role="form" th:action="@{/animals/__${action}__}" th:object="${animal}" method="post" autocomplete="off" 
+					class="needs-validation" enctype="multipart/form-data" novalidate>
+					<input type="hidden" th:field="*{id}">
+					<div class="form-group">
+						<label for="ejemplo_email_1" style="color: #c7f012">Nombre del Animal</label>
+						<input type="text" class="form-control" th:field="*{name}" id="ejemplo_email_1"
+							placeholder="Introduce nombre del animal">
+					</div>
+					<div class="form-group">
+						<label for="" style="color: #c7f012">Nombre Cientifico</label>
+						<input type="text" class="form-control" id="" th:field="*{scientificName}" placeholder="Nombre Cientifico">
+					</div>
+					<div class="form-group">
+						<label for="exampleFormControlTextarea1" style="color: #c7f012">Descripcion</label>
+						<textarea type="text" class="form-control" id="exampleFormControlTextarea1" th:field="*{description}" rows="3"></textarea>
+					</div>
+					<input type="hidden" th:field="*{dischargeDate}">
+					<div>
+						<label for="autor" style="color: #c7f012">Seleccione Categoria</label>
+
+						<select th:field="*{category}" class="form-select" id="category">
+							<option selected value="" >Categoria</option>
+								
+							
+							<option th:each="category: ${T(com.esoa.demo.enumeration.Category).values()}" th:text="${category}"
+                                    th:value="${category}"></option>
+
+						</select>
+					</div>
+					<div>
+						<label for="specie" style="color: #c7f012">Seleccione Especie</label>
+
+						<select th:field=*{specie} class="form-select" id="specie">  
+							<option class="text-center" selected value="" >Especie</option>
+							<option th:each="specie:${species}" 
+								th:text="|${specie.name} - ${specie.family} - ${specie.order} - ${specie.genus}|"
+								th:value="${specie.id}"></option>
+							
+						  </select>
+					</div>
+					<div class="form-group">
+                        <label for="photo" style="color: #c7f012" >Cargar Imagen</label>
+                        <input  type="file" name="photo" accept="image/*">
+                    </div>
+					
+
+					<button th:text="${action == 'create' ? 'Crear' : 'Actualizar'}" type="submit"  class="tim-btn read-btn">Añadir Especie</button>
+				</form>
+			</div>
+		</section>
+		<footer th:replace="fragments/footer :: footer"></footer>
+	</div>
+</body>
+
+</html>

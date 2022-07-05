@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="fragments/head :: head"></head>
+
+    <body data-style="default">
+    
+        <header th:replace="fragments/header :: header"></header>
+    
+        <a href="#main_content" data-type="section-switch" class="return-to-top back-top"><i
+                class="fa fa-chevron-up"></i></a>
+    
+        <div id="main_content">
+    
+            <section data-bg-image="../media/background/12.jpg">
+                <div class="page-title-wrap">
+                    <div class="page-title-inner">
+                        
+                        <br>
+                        <h1 class="text-center title" style="color: #c7f012">Lista de usuarios</h1>
+                        <a th:href="@{/users/form}" 
+                    class="popup-btn" data-animate="fadeInRight" data-delay="0.9s">Crear Usuario</a>
+                    </div>
+                </div>
+    
+            </section>
+    
+            <section class="blog-grid pt__50 pb__50">
+    
+                <div class="container" >
+                    
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert"
+                    th:if="${users.isEmpty()}">
+                        Todavia no hay usuarios
+                    </div>
+
+                    <div class="blog-grid">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6" th:each="user : ${users}">
+                                <div class="blog-post-grid" th:style="${user.deleted} ? 'background: #dc3545;' :'' ">
+                                    <div class="container">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title" th:text="${user.role}" style="color: #c7f012"></h5>
+                                        </div>
+                                        <ul class="card-text">
+                                            <h6>
+                                                Email: 
+                                                <li class="list-item" th:text="${user.email}" style="color: #c7f012">
+                                                </li>
+                                            </h6>
+                                            <h6>
+                                                Nombre: 
+                                                <li class="list-item" th:text="${user.name}" style="color: #c7f012">
+                                                </li>
+                                            </h6>
+                                            <h6>
+                                                Apellido: 
+                                                <li class="list-item" th:text="${user.lastName}" style="color: #c7f012">
+                                                </li>
+                                            </h6>
+                                        </ul>
+                                        <!--<td sec:authorize="hasRole('ADMIN')">-->
+                                        <div class="row" style="padding-top: 5px;">
+                                            <div style="padding-right: 15px;padding-left: 15px;">
+                                                <a th:href="@{/users/form/__${user.id}__} " class="tim-btn read-btn">Editar</a>
+                                            </div>
+                                            <div style="padding-left: 5px;">
+                                                <form th:action="${user.deleted} ? @{/users/enable/__${user.id}__} : @{/users/delete/__${user.id}__}"
+                                                method="post">
+                                                    <button th:text="${user.deleted} ? 'Dar de Alta' : 'Dar de Baja'" 
+                                                    class="tim-btn read-btn" type="submit">
+                                                    </button>
+                                                </form>
+                                                
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                </div>
+    
+            </section>
+    
+    
+    
+    
+        </div>
+        <footer th:replace="fragments/footer :: footer"></footer>
+    
+    </body>
+
+</html>

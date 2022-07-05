@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+<head th:replace="fragments/head :: head"></head>
+
+<body>
+
+    <header th:replace="fragments/header :: header"></header>
+
+    <section id="banner">
+        <div class="swiper-container banner-slider"
+            data-swiper-config='{"loop": true, "effect": "slide", "prevButton":"#banner-nav-prev", "nextButton": "#banner-nav-next", "speed": 800, "autoplay": 5000, "grabCursor": true, "paginationClickable": true}'>
+
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" data-bg-image="media/banner/2.jpg">
+                    <div class="slider-content" data-animate="fadeIn">
+
+                        <h2 data-animate="zoomIn"><span>MUNDO</span> ANIMAL :</h2>
+                        <h2 data-animate="fadeInUp" data-delay="0.5s">¡Evitemos que se Extinga!</h2>
+
+                        
+                    </div>
+                    
+
+                </div>
+                <div class="swiper-slide" data-bg-image="media/banner/1.jpg">
+                    <div class="slider-content" data-animate="fadeIn">
+                        <h2 data-animate="zoomIn"><span>SWIFT</span> desarrolladores</h2>
+                        <h2 data-animate="fadeInUp" data-delay="0.5s">El blog de los animales</h2>
+
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+
+
+            <!-- Swiper Nav Prev -->
+            <div id="banner-nav-prev" class="fire-nav-prev">
+                <i class="fa fa-angle-left"></i>
+            </div>
+            <!-- Swiper Nav Next -->
+            <div id="banner-nav-next" class="fire-nav-next">
+                <i class="fa fa-angle-right"></i>
+            </div>
+        </div>
+    </section>
+    <!-- /#banner -->
+
+</body>
+
+
+<footer th:replace="fragments/footer :: footer"></footer>
+
+</html>

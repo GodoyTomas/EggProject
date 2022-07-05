@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+    <head th:replace="fragments/head :: head"></head>
+
+<body>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <header th:replace="fragments/header :: header"></header>
+    <section id="beyond">
+
+    </section>
+    <main id="beyond">
+        <div class="container p-5 tables-inner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 mx-auto px-0">
+                        <div th:if="${error}" th:text="${error}" class="alert alert-danger shadow text-center"></div>
+                        <div th:if="${logout}" th:text="${logout}" class="alert alert-success shadow text-center"></div>
+
+                        <div class="card text-center shadow">
+                            <div>
+                                
+                                <h3>Login   <i class="fa fa-user"></i> </h3>
+                            </div>
+                            <div class="card-body">
+                                <form th:action="@{/logincheck}" method="post" autocomplete="off" class="needs-validation mb-4"
+                                      novalidate  >
+        
+                                    <div class="form-group mb-3">
+                                        <input type="email" name="username" placeholder="Email" class="form-control" required/>
+                                        <div class="invalid-feedback text-start">Email is required</div>
+                                    </div>
+        
+                                    <div class="form-group">
+                                        <input type="password" name="password" placeholder="Password" class="form-control"
+                                               required/>
+                                        <div class="invalid-feedback text-start">Password is required</div>
+                                    </div>
+                                    <div class=" row ">
+                                        <div class="col">
+                                            <div class="row justify-content-center align-items-center">
+                                                <div id="validationCaptcha" required class=" g-recaptcha"
+                                                    data-sitekey="6Lfc73YgAAAAAMM4iqcpSuQpVw568KNBXKnW1nGO">
+                                                </div>
+            
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group pt-3">
+                                        <button class="tim-btn read-btn" type="submit" onclick='checkCaptcha(event)'>Ingresar</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <script>
+                            function checkCaptcha(event) {
+                                if (!grecaptcha.getResponse()) {
+                                    alert("ERROR!!!\nTienes que demostrar que no eres un robot.");
+                                    console.log('event.currentTarget',event.currentTarget);
+                                    event.preventDefault();
+                                  
+                                } 
+                              }      
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+                           
+
+
+
+</body>
+
+
+<footer th:replace="fragments/footer :: footer"></footer>
+
+</html>

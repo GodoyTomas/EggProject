@@ -1,0 +1,81 @@
+<footer th:fragment="footer" id="footer">
+    <div class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-7">
+                    <div class="footer-about">
+                        <h3 class="footer-title">SOBRE NOSOTROS</h3>
+                        <div class="content">
+                            <p>
+                                State Wide Integrated Fauna Team -
+                                EL BLOG DE LOS ANIMALES -
+                                No pretendemos cambiar el mundo, pero si cambiar sus vidas.
+                            </p>
+
+                            <p>
+                                Si se puede <strong>imaginar,</strong> se puede programar.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- /.footer-about -->
+                </div>
+                <!-- /.col-lg-3 col-md-4 -->
+
+                
+                <!-- /.col-lg-3 col-md-4 -->
+
+                
+                <!-- /.col-lg-3 col-md-4 -->
+
+                <div class="col-lg-3 col-md-4">
+                    <div class="footer-about">
+                        <h3 class="footer-title">CONTACTATE CON NOSOTROS</h3>
+                        <div class="contact-items">
+                            <h4 class="title"><i class="fa fa-pencil"></i>Casilla de correo</h4>
+                            <p class="email">staffswiftteam@gmail.com</p>
+                        </div>
+
+                        <div class="contact-items">
+                            <h4 class="title"><i class="fa fa-bullhorn"></i>Marketing</h4>
+                            <p class="email">staffswiftteam@gmail.com</p>
+                        </div>
+
+                        <div class="contact-items">
+                            <h4 class="title"><i class="fa fa-user"></i>Administration</h4>
+                            <p class="email">staffswiftteam@gmail.com</p>
+                        </div>
+                        
+                        <a sec:authorize="hasRole('USER')" type="submit" th:href="@{/contacts/form}" class="tim-btn-bg brn">Dejanos tu comentario</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="copy-right">
+            <p>DESARROLLADORES <a th:href="@{/}" target="_blank">State Wide Integrated Fauna Team</a>
+                SWIFT-TEAM - EGG EDUCATION</p>
+        </div>
+    </div>
+
+    <script th:src="@{/dependencies/popper.js/popper.min.js}"></script>
+    <script th:src="@{/dependencies/jquery/jquery.min.js}"></script>
+    <script th:src="@{/dependencies/bootstrap/js/bootstrap.min.js}"></script>
+    <script th:src="@{/dependencies/swiper/js/swiper.min.js}"></script>
+    <script th:src="@{/dependencies/swiperRunner/swiperRunner.min.js}"></script>
+    <script th:src="@{/dependencies/slick-carousel/js/slick.min.js}"></script>
+    <script th:src="@{/dependencies/magnific-popup/js/jquery.magnific-popup.min.js}"></script>
+    <script th:src="@{/dependencies/jquery-ui/jquery-ui.min.js}"></script>
+    <script th:src="@{/dependencies/jquery-animated-headlines/js/jquery.animatedheadline.min.js}"></script>
+    <script th:src="@{/dependencies/jquery.countdown/jquery.countdown.min.js}"></script>
+    <script th:src="@{/dependencies/countUp.js/js/countUp.min.js}"></script>
+    <script th:src="@{/dependencies/jquery.appear.bas2k/jquery.appear.js}"></script>
+    <script th:src="@{/dependencies/jquery.ripples/jquery.ripples.js}"></script>
+    <script th:src="@{/dependencies/wow/js/wow.min.js}"></script>
+
+    <!-- Site Scripts -->
+    <script th:src="@{/assets/js/app.js}"></script>
+
+</footer>

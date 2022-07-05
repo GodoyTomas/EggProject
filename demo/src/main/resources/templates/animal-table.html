@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head :: head"></head>
+
+
+<body data-style="default">
+
+    <header th:replace="fragments/header :: header"></header>
+
+    <a href="#main_content" data-type="section-switch" class="return-to-top back-top"><i
+            class="fa fa-chevron-up"></i></a>
+
+    <div id="main_content">
+
+        <section data-bg-image="../media/background/12.jpg">
+            <div class="page-title-wrap">
+                <div class="page-title-inner">
+
+                    <br>
+                    <h1 class="text-center" style="color: #c7f012">Lista de Animales</h1>
+                    <a th:href="@{/animals/form}" class="popup-btn" data-animate="fadeInRight" data-delay="0.9s">Crear
+                        Animales</a>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="blog-grid pt__50 pb__50">
+            <div class="container">
+
+                <div class="alert alert-info alert-dismissible fade show" role="alert" th:if="${animals.isEmpty()}">
+                    Debe ingresar un animal
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4 col-md-6" th:each="animal : ${animals}">
+                        <div>
+                            <div class="blog-post-grid" th:style="${animal.deleted} ? 'background: #dc3545;' :'' ">
+                                <div class="featire-image">
+                                    <img th:src="@{/uploads/animals/__${animal.image}__}">
+                                </div>
+
+                                <div class="post-type-icon">
+                                    <a th:text="${animal.category}"></a>
+                                </div>
+
+                                <div class="blog-content">
+                                    <div class="row align-items-center blog-meta ">
+                                        <div class="col">
+
+                                        </div>
+                                        <div class="col-2">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <div class="col-3 px-0">
+                                            <a th:text="${animal.dischargeDate}"></a>
+                                        </div>
+                                    </div>
+                                    <h3 class="blog-title">
+                                        Nombre:
+                                        <div id="contenedor1">
+                                            <p th:text="${animal.name}"></p>
+                                        </div>
+                                    </h3>
+                                    <label>
+                                        Nombre cientifico:
+                                        <div id="contenedor1">
+                                        <p th:text="${animal.scientificName}"></p>
+                                        </div>
+                                    </label>
+
+
+                                </div>
+                                <!--<td sec:authorize="hasRole('ADMIN')">-->
+                                <div class="row justify-content-end">
+                                    <div class="col text-center">
+                                        <a th:href="@{/animals/form/__${animal.id}__} "
+                                            class="tim-btn read-btn">Editar</a>
+                                    </div>
+                                    <div class="col">
+                                        <form
+                                            th:action="${animal.deleted} ? @{/animals/enable/__${animal.id}__} : @{/animals/delete/__${animal.id}__}"
+                                            method="post">
+                                            <button th:text="${animal.deleted} ? 'Dar de Alta' : 'Dar de Baja'"
+                                                class="tim-btn read-btn" type="submit">
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /#game-review -->
+    </div>
+    <footer th:replace="fragments/footer :: footer"></footer>
+</body>
